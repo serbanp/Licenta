@@ -1,0 +1,79 @@
+DROP TABLE movies_genres;
+DROP TABLE movies_actors;
+DROP TABLE movies;
+DROP TABLE directors;
+DROP TABLE genres;
+DROP TABLE actors;
+DROP TABLE users;
+ALTER SEQUENCE director_seq RESTART WITH 1;
+ALTER SEQUENCE movie_seq RESTART WITH 1;
+ALTER SEQUENCE genre_seq RESTART WITH 1;
+ALTER SEQUENCE actor_seq RESTART WITH 1;
+
+CREATE TABLE directors (
+	id serial,
+	full_name text NOT NULL,
+	birth_day date ,
+	bio text ,
+	CONSTRAINT directors_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE movies (
+    id serial ,
+	director_id int NOT null,
+    title text NOT NULL,	
+	created_at date,
+	updated_at date,
+	CONSTRAINT movies_pkey PRIMARY KEY(id),
+	CONSTRAINT director_fkey FOREIGN KEY(director_id) REFERENCES directors(id)
+);
+
+CREATE TABLE genres (
+    id serial ,
+    title text NOT NULL unique,
+	CONSTRAINT genres_pkey PRIMARY KEY(id)
+);
+
+CREATE TABLE movies_genres (
+	movie_id integer NOT NULL,
+	genre_id integer NOT NULL,
+	
+	CONSTRAINT movies_genres_pkey PRIMARY KEY(movie_id,genre_id) ,
+	CONSTRAINT movie_fkey FOREIGN KEY (movie_id) REFERENCES movies(id) ,
+	CONSTRAINT genre_fkey FOREIGN KEY (genre_id) REFERENCES genres(id)
+);
+
+CREATE TABLE actors (
+	id serial,
+	full_name text NOT NULL,	
+	birth_day date ,
+	bio text ,
+	CONSTRAINT actors_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE users(
+	id serial,
+	username text NOT NULL,
+	email text NOT NULL,
+	password text NOT NULL,
+	CONSTRAINT users_pkey PRIMARY KEY (id) 
+);
+
+CREATE TABLE users_movies_ratings(
+	user_id integer NOT NULL,
+	movie_id integer NOT NULL,
+	rating smallint NOT NULL,
+
+	CONSTRAINT users_movies_ratings_pkey PRIMARY KEY(user_id,movie_id),
+	CONSTRAINT user_fkey FOREIGN KEY(user_id) REFERENCES users(id),
+	CONSTRAINT movie_fkey FOREIGN KEY(movie_id) REFERENCES movies(id)
+);	
+
+CREATE TABLE movies_actors (
+	movie_id integer NOT NULL,
+	actor_id integer NOT NULL,
+	
+	CONSTRAINT movies_actors_pkey PRIMARY KEY(movie_id,actor_id) ,
+	CONSTRAINT movie_fkey FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
+	CONSTRAINT actor_fkey FOREIGN KEY (actor_id) REFERENCES actors(id) ON DELETE CASCADE
+);
