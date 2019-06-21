@@ -1,0 +1,26 @@
+.login-container {
+    max-width:30%;
+    margin: auto;
+}
+
+h1 {
+    text-align:center;
+    margin-bottom:3rem;
+}
+
+#login-button {
+    color:#fff;
+    background-color:#007bff;
+    width:100%;
+    margin-top:1rem;
+    border-style:none;
+    border-radius:0.3rem;
+    line-height:1.8rem;
+}
+
+#login-button:active,
+#login-button:visited,
+#login-button:focus  {
+    border:none;
+    border-style:hidden;
+}

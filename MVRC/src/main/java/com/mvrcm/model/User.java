@@ -35,9 +35,24 @@ public class User {
         this.password = password;
     }
 
+    public User(String username, String password, String email, Set<UserMovieRating> userMovieRatingSet) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.userMovieRatingSet = userMovieRatingSet;
+    }
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Set<UserMovieRating> getUserMovieRatingSet() {
+        return userMovieRatingSet;
+    }
+
+    public void setUserMovieRatingSet(Set<UserMovieRating> userMovieRatingSet) {
+        this.userMovieRatingSet = userMovieRatingSet;
     }
 
     public User() {

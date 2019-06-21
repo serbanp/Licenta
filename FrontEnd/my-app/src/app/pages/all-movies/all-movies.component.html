@@ -1,0 +1,137 @@
+<app-nav-bar></app-nav-bar>
+<div class="page-container">
+    <div class="recommendations" *ngIf="recommendedMovies.length>0">
+      <div class="recommendations-interest">You might also like watching</div>
+      <div class="recommendation-container" *ngFor="let movie of recommendedMovies" (click)="openModal(movie)">
+          <img src={{movie.imgSrc}}/>
+      </div>
+    </div>
+  <div class="pagination">
+      <div class="pages">
+      <ngb-pagination [collectionSize]="noOfTotalMovies" [(page)]="currentPage" [maxSize]="5" [pageSize]="moviesPerPage" [rotate]="true" [boundaryLinks]="true" (pageChange)="onPageChange(currentPage)"  >
+      </ngb-pagination>
+      </div>
+      <div class="dropdown">
+          <button class="dropbtn" >{{selectedGenre}}</button>
+          <div class="dropdown-content">
+             <ul class="genres-dropdown-items">
+               <li (click)="changeGenreView('')">All</li>
+                <li *ngFor="let genre of genres" (click)="changeGenreView(genre.title)">
+                    {{genre.title}}
+                </li>
+             </ul> 
+           </div>
+      </div>
+      <div class="dropdown">
+          <button class="dropbtn" >{{selectedSortingType}}</button>
+          <div class="dropdown-content">
+             <ul class="order-by-options-dropdown-items">
+                <li *ngFor="let sortingType of sortingTypes" (click)="changeSortingType(sortingType)">
+                    {{sortingType}}
+                </li>
+             </ul> 
+           </div>
+      </div>
+      <div class="sort-order">
+          <i class="arrow up" (click)="changeSortingOrder('asc')">
+          </i>
+          <br>
+          <i class="arrow down" (click)="changeSortingOrder('desc')">
+        </i>
+      </div>
+          <form autocomplete="off">
+            <div class="dropdown">
+              <input class="search-input" type="text" (input)="onSearchChange($event.target.value)" placeholder="Search movie" maxlength="25">
+              <div class="autocomplete-content" *ngIf="foundMovies==true">
+                <ul class="autocomplete-items">
+                <li *ngFor="let movie of moviesSearchResult.slice(0,7)" (click)="openModal(movie)">
+                  {{movie.title}}
+                </li>
+                </ul>
+              </div>
+            </div>
+          </form>
+  </div>
+  <div class="movie-container" *ngFor="let movie of movies">
+    <div class="movie-poster-img">
+      <img src={{movie.imgSrc}}/>
+    </div>
+    <div class="movie-details">
+      <div class="movie-title">
+          {{movie.title}}
+          <div class="movie-release-year">
+              ({{getReleaseYear(movie.releaseDate)}})
+            </div>
+          <div class="movie-avg-rating" *ngIf="movie.averageRating!=undefined">
+              <span class="star filled">&#9733;</span> {{movie.averageRating}}
+          </div>
+      <div class="movie-rating">
+            <ngb-rating [(ngModel)]="movie.rating" (click)="editUserRating(movie)">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+          </div>
+      </div>
+      <div class="movie-director">
+        <span class="details-title">Directed by : </span>{{movie.director.fullName}}
+      </div>
+      <div class="movie-actors">
+        <span class="details-title">With : </span>{{getActorsNames(movie)}}
+      </div>
+      <div class="movie-genres">
+        <span class="details-title">Genres : </span>{{getGenreTitles(movie)}}
+      </div>
+      <div class="movie-bio">
+          {{movie.bio}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+          <div class="movie-title">
+              <div class="test" *ngIf="modalMovie!=undefined">
+              {{modalMovie.title}}
+              <div class="movie-release-year" *ngIf="modalMovie!=undefined">
+              ({{getReleaseYear(modalMovie.releaseDate)}})
+              </div>
+              <div class="movie-avg-rating" *ngIf="modalMovie.averageRating!=undefined">
+                  <span class="star filled">&#9733;</span> {{modalMovie.averageRating}}
+              </div>
+              </div>
+              <div class="movie-rating" *ngIf="modalMovie!=undefined">
+                  <ngb-rating [(ngModel)]="modalMovie.rating" (click)="editUserRating(modalMovie)">
+                      <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                      </ng-template>
+                    </ngb-rating>
+              </div>
+          </div>
+      </div>
+      <div class="modal-body">
+        <div class="movie-container">
+          <div class="movie-poster-img" *ngIf="modalMovie!=undefined">
+              <img src={{modalMovie.imgSrc}}/>
+          </div>
+          <div class="movie-details">
+            <div class="movie-director" *ngIf="modalMovie!=undefined">
+              <span class="details-title">Directed by : </span>{{getDirectorFullName(modalMovie)}}
+            </div>
+            <div class="movie-actors" *ngIf="modalMovie!=undefined">
+              <span class="details-title">With : </span>{{getActorsNames(modalMovie)}}
+            </div>
+            <div class="movie-genres" *ngIf="modalMovie!=undefined">
+              <span class="details-title">Genres : </span>{{getGenreTitles(modalMovie)}}
+            </div>
+            <div class="movie-bio" *ngIf="modalMovie!=undefined">
+                {{modalMovie.bio}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

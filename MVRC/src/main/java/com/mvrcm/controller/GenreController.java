@@ -17,8 +17,6 @@ public class GenreController {
    @Autowired
    private GenreService genreService;
 
-   @Autowired
-   private MovieService movieService;
 
    @GetMapping("/genres/{id}")
    public Genre getGenreById(@PathVariable Long id) {return genreService.getById(id);}
@@ -27,7 +25,6 @@ public class GenreController {
    public List<Genre> getGenres() {
         return genreService.getAll();
     }
-
 
     @PostMapping("/genres")
     public Genre createGenre(@Valid @RequestBody Genre genre) {

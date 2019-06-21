@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+.page-container {
+    margin-top:3rem;
+    padding-left:10%;
+    padding-right:10%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    outline:none;
+    outline-style:0
+ }
+
+button:focus {outline:none;outline-style:0}
+
+button::-moz-focus-inner {
+    border: 0;
+}
+
+.details-title {
+    font-weight:bold;
+}

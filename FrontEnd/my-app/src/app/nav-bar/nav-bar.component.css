@@ -1,0 +1,19 @@
+.nav-container {
+    display: flex; 
+    justify-content: flex-end;
+    padding-top:0.2rem;
+    padding-right:10%;
+    background-color:#007bff;
+    color:#fff;
+    font-size:1rem;
+}
+
+.nav-username {
+    display:inline-block;
+    margin-right:2rem;
+}
+
+.nav-logout {
+    display:inline-block;
+    cursor:pointer;
+}

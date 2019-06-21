@@ -1,12 +1,15 @@
 package com.mvrcm.service;
 
+import com.mvrcm.Exceptions.ResourceNotFoundException;
 import com.mvrcm.model.Genre;
 import com.mvrcm.model.Movie;
 import com.mvrcm.repository.GenreRepository;
 import com.mvrcm.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -39,17 +42,17 @@ public class GenreService {
         try {
             return genreRepository.findById(id)
                     .map(genre -> {
-                        for (Movie movie:movieRepository.findByGenres_Title(genre.getTitle()))
+                        for (Movie movie : movieRepository.findByGenres_Title(genre.getTitle()))
                             movie.getGenres().remove(genre);
                         genreRepository.delete(genre);
                         return ResponseEntity.ok().build();
-                    }).orElseThrow(() -> new Exception("Genre not found with id " + id));
-        } catch (Exception e) {
-            e.printStackTrace();
+                    }).orElseThrow(() -> new ResourceNotFoundException("Genre not found with id " + id));
+        } catch (ResourceNotFoundException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
-        return null;
     }
-
-
-
 }
+
+
+

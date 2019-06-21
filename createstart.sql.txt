@@ -1,6 +1,9 @@
+DROP TABLE users_movies_ratings;
+DROP TABLE movies_tags;
 DROP TABLE movies_genres;
 DROP TABLE movies_actors;
 DROP TABLE movies;
+DROP TABLE tags;
 DROP TABLE directors;
 DROP TABLE genres;
 DROP TABLE actors;
@@ -9,6 +12,8 @@ ALTER SEQUENCE director_seq RESTART WITH 1;
 ALTER SEQUENCE movie_seq RESTART WITH 1;
 ALTER SEQUENCE genre_seq RESTART WITH 1;
 ALTER SEQUENCE actor_seq RESTART WITH 1;
+ALTER SEQUENCE user_seq RESTART WITH 1;
+ALTER SEQUENCE tag_seq RESTART WITH 1;
 
 CREATE TABLE directors (
 	id serial,
@@ -24,6 +29,7 @@ CREATE TABLE movies (
     title text NOT NULL,	
 	created_at date,
 	updated_at date,
+	img_src text,
 	CONSTRAINT movies_pkey PRIMARY KEY(id),
 	CONSTRAINT director_fkey FOREIGN KEY(director_id) REFERENCES directors(id)
 );
@@ -34,6 +40,12 @@ CREATE TABLE genres (
 	CONSTRAINT genres_pkey PRIMARY KEY(id)
 );
 
+CREATE TABLE tags (
+     id serial,
+     title text NOT NULL UNIQUE,
+	CONSTRAINT tags_pkey PRIMARY KEY(id)
+);
+
 CREATE TABLE movies_genres (
 	movie_id integer NOT NULL,
 	genre_id integer NOT NULL,
@@ -41,6 +53,15 @@ CREATE TABLE movies_genres (
 	CONSTRAINT movies_genres_pkey PRIMARY KEY(movie_id,genre_id) ,
 	CONSTRAINT movie_fkey FOREIGN KEY (movie_id) REFERENCES movies(id) ,
 	CONSTRAINT genre_fkey FOREIGN KEY (genre_id) REFERENCES genres(id)
+);
+
+CREATE TABLE movies_tags( 
+	movie_id integer NOT NULL,
+	tag_id integer NOT NULL,
+	
+	CONSTRAINT movies_tags_pkey PRIMARY KEY(movie_id,tag_id),
+	CONSTRAINT movie_fkey FOREIGN KEY (movie_id) REFERENCES movies(id),
+	CONSTRAINT tag_fkey FOREIGN KEY(tag_id) references tags(id)
 );
 
 CREATE TABLE actors (

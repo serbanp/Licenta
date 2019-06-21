@@ -1,0 +1,289 @@
+.movie-avg-rating {
+    display:inline;
+    margin-left:0.1rem;
+}
+
+.movie-release-year{
+    display:inline;
+}
+
+.movie-container {
+    display:flex;
+    margin-bottom:5rem;
+}
+.movie-details {
+    margin-left:1rem;
+    display:block;
+    max-height:180px;
+}
+.pagination {
+}
+
+.movie-genres {
+    margin-bottom:1rem;
+}
+
+.movie-title {
+    font-weight:bold;
+    font-size:1.5rem;
+    margin-bottom:1rem;
+}
+
+.movie-director {
+    margin-bottom:1rem;
+}
+
+:focus {
+    outline: 0 !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+.movie-actors {
+    margin-bottom:1rem;
+}
+.movie-bio {
+    word-wrap:break-word;
+    text-indent: 1rem;
+}
+.star {
+    font-size: 1.5rem;
+    color: #b0c4de;
+}
+.movie-rating {
+    outline:none;
+}
+.filled {
+    color: #1e90ff;
+}
+
+ul  {
+    padding:0%;
+    margin:0%;
+    margin-left:1rem;
+    z-index: 100;
+}
+
+.genres-dropdown-items {
+    columns:4;
+    white-space: nowrap;
+    margin-top:0.2rem;
+    z-index: 100;
+}
+
+li {
+    list-style-type: none;
+    cursor:pointer;
+    box-sizing:content-box;
+    padding:0%;
+    margin:0%;
+    text-align:justify;
+    z-index: 100;
+}
+
+li:first-letter {
+    text-transform:capitalize;
+}
+
+li:hover {
+    color:#007bff;
+}
+
+.dropdown-content li {
+    text-decoration: none;
+}
+
+.dropbtn:first-letter {
+    text-transform:capitalize;
+}
+
+.dropbtn {
+    color: #FFF;
+    background-color:#007bff;
+    font-size:1rem;
+    border: none;
+    cursor: pointer;
+    line-height: 1.25;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+
+.dropdown {
+    margin-right:5rem;
+  }
+
+
+.autocomplete {
+    line-height:1.25;
+    padding:3px;
+    font-size:1.3rem;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+  }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    left:0;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    height: auto;
+    z-index: 100;
+  }
+
+.dropdown:hover .dropbtn {
+    background-color:#0062cc;
+  }
+
+.pages {
+    margin-right:5rem;
+}
+
+
+.order-by-options-dropdown-items {
+    margin-top:0.2rem;
+    columns:1;
+    white-space: nowrap;
+    margin-right:1rem;
+}
+
+.sort-order {
+    margin-left:-4rem;
+    margin-right:5rem;
+}
+
+i {
+    border: solid #007bff;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    cursor:pointer;
+ }
+ 
+.arrow.down {
+    margin-bottom:3rem;
+} 
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+  
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+.autocomplete-content {
+    z-index:1;
+    position:absolute;
+    display: block;
+    left:0;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    height: auto;
+    box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.2);
+    white-space: nowrap;
+    width:25rem;
+    z-index: 100;
+}
+
+.autocomplete-items {
+    margin-right:1rem;
+    z-index: 100;
+}
+
+.search-input {
+    width:25rem;
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    max-width:60%;
+    border: 1px solid #888; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+.modal .movie-title {
+    margin-bottom:0rem;
+}
+
+.modal .movie-container {
+    margin-bottom:0.5rem;
+}
+.modal-header {
+    padding:0px;
+    padding-bottom:0.5rem;
+}
+
+.modal-body {
+    padding:0px;
+    padding-top:0.5rem;
+}
+
+.modal .movie-rating {
+    display:inline;
+}
+
+.test {
+    display:inline-block;
+    margin-right:10rem;
+}
+
+
+.recommendations {
+    margin-top:-2rem;
+    margin-bottom:1rem;
+    text-align:center;
+}
+
+.recommendation-container {
+    margin-right:0.5rem;
+    display:inline;
+}
+.recommendations-interest {
+    color:#0062cc;
+    font-weight:bold;
+    margin-bottom:0.5rem;
+}

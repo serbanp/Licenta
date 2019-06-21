@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.mvrcm.model.Utils.Persoana;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class Actor extends Persoana {
     @SequenceGenerator(name="actor_generator", sequenceName = "actor_seq")
     private Long id;
 
+    @BatchSize(size=100)
     @ManyToMany(mappedBy = "actors",fetch = FetchType.LAZY)
     @JsonBackReference
     private Set<Movie> movies;

@@ -1,4 +1,4 @@
-package com.mvrcm.model.Utils;
+package com.mvrcm.login_jwt_system;
 
 public class LoginForm {
     private String username;

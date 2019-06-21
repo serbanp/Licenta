@@ -13,11 +13,11 @@ public class UserMovieRating implements Serializable {
     @EmbeddedId
     private UserMovieId id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("userId")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("movieId")
     private Movie movie;
 
