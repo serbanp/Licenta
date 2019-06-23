@@ -34,26 +34,32 @@ public class AdjustedCosineSimilarity implements ItemSimilarity {
             long yIndex = yPrefs.getUserID(0);
             int xPrefIndex = 0;
             int yPrefIndex = 0;
+            double sumX=0;
+            double sumY=0;
             int count = 0;
             while (true) {
                 int compare = xIndex < yIndex ? -1 : (xIndex > yIndex ? 1 : 0);
                 if (compare == 0) {
                     double x;
                     double y;
-                    double avgRatingUser;
-                    if (avgUserRatingMap.containsKey(xIndex)) {
-                        avgRatingUser = this.avgUserRatingMap.get(xIndex);
-                    }
-                    else {
-                        avgUserRatingMap.put(xIndex,getAverageRatingForUser(xIndex));
-                        avgRatingUser=avgUserRatingMap.get(xIndex);
-                    }
-
-                    x = (double) xPrefs.getValue(xPrefIndex);
-                    y = (double) yPrefs.getValue(yPrefIndex);
-                    prodXY += (x - avgRatingUser) * (y - avgRatingUser);
-                    sqrt1 += (x - avgRatingUser) * (x - avgRatingUser);
-                    sqrt2 += (y - avgRatingUser) * (y - avgRatingUser);
+//                    double avgRatingUser;
+////                    if (avgUserRatingMap.containsKey(xIndex)) {
+////                        avgRatingUser = this.avgUserRatingMap.get(xIndex);
+////                    }
+////                    else {
+////                        avgUserRatingMap.put(xIndex,getAverageRatingForUser(xIndex));
+////                        avgRatingUser=avgUserRatingMap.get(xIndex);
+////                    }
+////
+////                    x = (double) xPrefs.getValue(xPrefIndex);
+////                    y = (double) yPrefs.getValue(yPrefIndex);
+////                    prodXY += (x - avgRatingUser) * (y - avgRatingUser);
+////                    sqrt1 += (x - avgRatingUser) * (x - avgRatingUser);
+////                    sqrt2 += (y - avgRatingUser) * (y - avgRatingUser);
+                        x = (double) xPrefs.getValue(xPrefIndex);
+                        y = (double) yPrefs.getValue(yPrefIndex);
+                        sumX+=x;
+                        sumY+=y;
                     ++count;
                 } else if (compare <= 0) {
                     ++xPrefIndex;
@@ -81,7 +87,12 @@ public class AdjustedCosineSimilarity implements ItemSimilarity {
                     }
                 }
             }
-            result = prodXY / (Math.sqrt(sqrt1) * Math.sqrt(sqrt2));
+ //           result = prodXY / (Math.sqrt(sqrt1) * Math.sqrt(sqrt2));
+            double meanX=sumX/count;
+            double meanY=sumY/count;
+            sqrt1=(sumX*sumX)-2*sumX*meanX+(meanX*meanX);
+            sqrt2=(sumY*sumY)-2*sumY*meanY+(meanY*meanY);
+            result =(sumX*sumY-sumX*meanY-sumY*meanX+meanX*meanY)/(Math.sqrt(sqrt1)*Math.sqrt(sqrt2));
         }
         return result;
     }

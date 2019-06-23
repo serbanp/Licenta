@@ -23,7 +23,7 @@ public class RecommenderService {
     @Autowired
     ContentBasedRecommender contentBasedRecommender;
 
-    @Autowired
+    //@Autowired
     ItemBasedRecommender itemBasedRecommender;
 
     @Autowired

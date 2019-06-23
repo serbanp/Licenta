@@ -39,7 +39,7 @@ public class ContentBasedRecommender {
 
     private static final String features = "Director,Actors,Genres,Plot,Tags";
 
-    @PostConstruct
+    //@PostConstruct
     public void init() throws TasteException {
         this.movieBagOfWordsMap = new HashMap<>();
         this.similarityMatrix = new ArrayList<>();
@@ -172,7 +172,7 @@ public class ContentBasedRecommender {
         System.out.println("AVERAGE USER RATING " +averageUserRating);
         for (int i=0;i<preferenceArray.length();i++)
             for (String feature:movieBagOfWordsMap.get(preferenceArray.getItemID(i))) {
-                    if (featuresWeight.containsKSyey(feature)) {
+                    if (featuresWeight.containsKey(feature)) {
                             featuresWeight.get(feature).addRating(preferenceArray.getValue(i)-averageUserRating);
                             featuresWeight.get(feature).incrementNoOfMOvies();
                     }

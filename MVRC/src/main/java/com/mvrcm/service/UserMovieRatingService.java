@@ -1,6 +1,6 @@
 package com.mvrcm.service;
 
-import com.mvrcm.Exceptions.ResourceNotFoundException;
+import com.mvrcm.exceptions.ResourceNotFoundException;
 import com.mvrcm.model.Movie;
 import com.mvrcm.model.User;
 import com.mvrcm.model.UserMovieRating;
@@ -10,8 +10,6 @@ import com.mvrcm.recommender.utils.RatingsDataModel;
 import com.mvrcm.repository.MovieRepository;
 import com.mvrcm.repository.UserMovieRatingRepository;
 import com.mvrcm.repository.UserRepository;
-import org.apache.mahout.cf.taste.common.TasteException;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

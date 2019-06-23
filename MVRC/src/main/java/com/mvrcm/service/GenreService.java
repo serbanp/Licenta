@@ -1,6 +1,6 @@
 package com.mvrcm.service;
 
-import com.mvrcm.Exceptions.ResourceNotFoundException;
+import com.mvrcm.exceptions.ResourceNotFoundException;
 import com.mvrcm.model.Genre;
 import com.mvrcm.model.Movie;
 import com.mvrcm.repository.GenreRepository;

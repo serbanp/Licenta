@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user';
-import { AuthService } from '../services/auth/auth.service';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from './utils/must-match.validator';

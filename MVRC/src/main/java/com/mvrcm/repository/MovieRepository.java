@@ -11,12 +11,12 @@ import java.util.List;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie,Long> {
+    @Query("select movie.id from Movie movie")
+    List<Long> getAllIds();
     Page<Movie> findByGenres_Title(String title, Pageable pageable);
     List<Movie> findByGenres_Title(String title);
     List<Movie> findByTags_Title(String title);
     Movie findByTitle(String title);
     List<Movie> findAllByOrderByIdAsc();
-    @Query("select movie.id from Movie movie")
-    List<Long> getAllIds();
     List<Movie> findByTitleIgnoreCaseContaining(String title);
 }

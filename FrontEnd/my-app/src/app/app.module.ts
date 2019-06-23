@@ -6,10 +6,10 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AllMoviesComponent } from './pages/all-movies/all-movies.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgbPaginationModule,NgbRatingModule, NgbButtonsModule, NgbRadioGroup, NgbRadio, NgbCheckBox, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { Movie } from './models/movie';
 
 

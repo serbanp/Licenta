@@ -1,6 +1,6 @@
 package com.mvrcm.service;
 
-import com.mvrcm.Exceptions.ResourceNotFoundException;
+import com.mvrcm.exceptions.ResourceNotFoundException;
 import com.mvrcm.model.Director;
 import com.mvrcm.repository.DirectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;

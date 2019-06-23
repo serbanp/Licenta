@@ -1,13 +1,10 @@
 package com.mvrcm.service;
 
-import com.mvrcm.Exceptions.InsideResourceNotFoundException;
-import com.mvrcm.Exceptions.ResourceNotFoundException;
-import com.mvrcm.Exceptions.UniqueConstraintViolationException;
+import com.mvrcm.exceptions.InsideResourceNotFoundException;
+import com.mvrcm.exceptions.ResourceNotFoundException;
 import com.mvrcm.model.Actor;
-import com.mvrcm.model.Genre;
 import com.mvrcm.model.Movie;
 import com.mvrcm.repository.ActorRepository;
-import com.mvrcm.repository.GenreRepository;
 import com.mvrcm.repository.MovieRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;

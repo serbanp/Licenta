@@ -25,27 +25,34 @@ public class RecommenderTester {
         long n ;
         LongPrimitiveIterator longPrimitiveIterator = testModel.getUserIDs();
         int noOfUsersWith_0_Predictions=0;
+        int noOfZeros=0;
+        int nrUsers=0;
         while (longPrimitiveIterator.hasNext()) {
             long userID = longPrimitiveIterator.nextLong();
             double totalError=0;
             PreferenceArray preferencesFromUser = testModel.getPreferencesFromUser(userID);
             n = 0;
+            nrUsers++;
             for (Preference preference : preferencesFromUser) {
                 double predictedRating=recommender.estimatePreference(userID,preference.getItemID());
                 double error=Math.abs(preference.getValue() - predictedRating);
                 if (!Double.isNaN(error))
-                    totalError+=error;
-                else n--;
+                    totalError += error;
+                else {
+                    n--;
+                }
             }
             n+= preferencesFromUser.length();
             double meanErrorForUser=totalError/n;
             if (Double.isNaN(meanErrorForUser)) {
+                System.out.println("USERUL "+userID);
                 noOfUsersWith_0_Predictions+=1;
             }
             else {
                 MAE += meanErrorForUser;
             }
-            System.out.println("USER " + userID + " WITH " + preferencesFromUser.length() + " ratings " + "FINISHED!!!" + "  USER ERROR " +meanErrorForUser);
+            if (nrUsers%5000==0)
+                System.out.println("DONE " +nrUsers+" USERS");
         }
         System.out.println("NO OF USERS WITH 0 PREDICTIONS : "+noOfUsersWith_0_Predictions);
         System.out.println("MAE = "+MAE);

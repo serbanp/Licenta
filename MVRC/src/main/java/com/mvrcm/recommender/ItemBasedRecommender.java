@@ -21,7 +21,7 @@ import javax.annotation.PostConstruct;
 import java.util.*;
 
 
-@Component
+//@Component
 public class ItemBasedRecommender implements Recommender {
 
     @Autowired
@@ -32,7 +32,7 @@ public class ItemBasedRecommender implements Recommender {
     private DataModel dataModel;
     private ItemSimilarity itemSimilarity;
     private final double MIN_RATING=1.0;
-    private final double MAX_RATING=10.0;
+    private final double MAX_RATING=5.0;
 
     private double normalizeRating(double minR,double maxR,double rating) {
         return (2*(rating-minR)-(maxR-minR))/(maxR-minR);
@@ -43,9 +43,14 @@ public class ItemBasedRecommender implements Recommender {
     }
 
 
-    @PostConstruct
+    //@PostConstruct
     public void init() {
         this.itemSimilarity=new TanimotoCoefficientSimilarity(ratingsDataModel.getModel());
+    }
+
+    public ItemBasedRecommender(DataModel dataModel,ItemSimilarity itemSimilarity) {
+        this.dataModel=dataModel;
+        this.itemSimilarity=itemSimilarity;
     }
 
     @Override
@@ -81,11 +86,16 @@ public class ItemBasedRecommender implements Recommender {
             return 0;
         double predictedRating = 0;
         double similaritiesSum = 0;
+        int x=0;
+        List<Long> itemIdsWithoutSimilarityWithRequestedItem=new ArrayList<>();
         for (Long ratedItemID : ratedItems) {
             double similarity = itemSimilarity.itemSimilarity(itemID, ratedItemID);
             if (!Double.isNaN(similarity)) {
                 predictedRating += similarity * normalizeRating(this.MIN_RATING, this.MAX_RATING, getDataModel().getPreferenceValue(userID, ratedItemID));
                 similaritiesSum += Math.abs(similarity);
+            }
+            else {
+                itemIdsWithoutSimilarityWithRequestedItem.add(ratedItemID);
             }
         }
         predictedRating = predictedRating / similaritiesSum;
@@ -111,7 +121,7 @@ public class ItemBasedRecommender implements Recommender {
     }
 
     private Set<Long> getAllItems() throws TasteException {
-        LongPrimitiveIterator longPrimitiveIterator=ratingsDataModel.getModel().getItemIDs();
+        LongPrimitiveIterator longPrimitiveIterator=dataModel.getItemIDs();
         Set<Long> allItems=new HashSet<>();
         while(longPrimitiveIterator.hasNext()) {
             allItems.add(longPrimitiveIterator.nextLong());
@@ -158,7 +168,7 @@ public class ItemBasedRecommender implements Recommender {
 
     @Override
     public DataModel getDataModel() {
-        return this.ratingsDataModel.getModel();
+        return this.dataModel;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.mvrcm.service;
 
-import com.mvrcm.Exceptions.InsideResourceNotFoundException;
-import com.mvrcm.Exceptions.ResourceNotFoundException;
+import com.mvrcm.exceptions.InsideResourceNotFoundException;
+import com.mvrcm.exceptions.ResourceNotFoundException;
 import com.mvrcm.model.*;
 import com.mvrcm.model.Utils.ActorsWrapper;
 import com.mvrcm.model.Utils.GenresWrapper;
@@ -10,8 +10,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

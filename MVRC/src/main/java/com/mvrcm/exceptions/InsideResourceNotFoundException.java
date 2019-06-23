@@ -1,7 +1,4 @@
-package com.mvrcm.Exceptions;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+package com.mvrcm.exceptions;
 
 public class InsideResourceNotFoundException extends RuntimeException {
     public InsideResourceNotFoundException(String message) {
